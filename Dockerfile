@@ -1,19 +1,17 @@
 FROM node:lts-alpine
 
-RUN npm install -g @vue/cli-service-global
-
 ENV CHOKIDAR_USEPOLLING=true
 
-# RUN mkdir /app
+RUN mkdir /app
 
-# WORKDIR /app
+WORKDIR /app
 
-# COPY package*.json ./
+COPY package*.json ./
 
-# RUN npm install
+RUN npm install -g @vue/cli-service-global
 
-# RUN npm install vue-loader --save-dev
+RUN npm i --save-dev @fortawesome/fontawesome-free
 
-# COPY . .
+COPY . .
 
-# RUN npm run build
+RUN npm run build
