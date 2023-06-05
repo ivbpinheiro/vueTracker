@@ -3,24 +3,52 @@
         <h1>
             <img src="../assets/logo.png" alt="logo do icmc - usp">
         </h1>
+        <button class="button" @click="alterarTema">
+            {{textoBotao}}
+        </button>
     </header>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
 const BarraLateral = defineComponent({
-    name: 'BarraLateral'
+    name: 'BarraLateral',
+    emits: ['aoTemaAlterado'],
+    data (){
+        return {
+            modoEscuro: true
+        }
+    },
+    computed: {
+        textoBotao() {
+            if(this.modoEscuro){
+                return 'Desativar modo escuro'
+            }
+            return 'Ativar modo escuro'
+        }
+    },
+    methods: {
+        alterarTema(){
+            this.modoEscuro = !this.modoEscuro;
+            this.$emit('aoTemaAlterado')
+        }
+    }
 });
 
 export default BarraLateral;
 </script>
 
 <style scoped>
+.button{
+    margin-top: 1.5em;
+}
+
 header {
     padding: 1rem;
     background: #0d3b66;
     width: 100%;
     height: 100vh;
+    text-align: center;
 }
 
 @media only screen and (max-width: 768px) {
