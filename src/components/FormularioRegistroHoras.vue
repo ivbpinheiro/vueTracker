@@ -16,6 +16,7 @@ import { defineComponent } from 'vue';
 import Temporizador from './TemporizadorSegundos.vue';
 const FormularioRegistroHoras = defineComponent({
     name: 'FormularioRegistroHoras',
+    emits: ['aoSalvarTarefa'],
     components: {
         Temporizador
     },
@@ -26,8 +27,10 @@ const FormularioRegistroHoras = defineComponent({
     },
     methods: {
         finalizarTarefa (tempoEmSegundos: number): void {
-            console.log('Tempo da tarefa', tempoEmSegundos)
-            console.log('Nome da tarefa', this.descricao)
+            this.$emit('aoSalvarTarefa', {
+                duracaoEmSegundos: tempoEmSegundos,
+                descricao: this.descricao
+            })
         }
     }    
 })
